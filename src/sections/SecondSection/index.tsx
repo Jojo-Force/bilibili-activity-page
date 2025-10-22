@@ -5,27 +5,31 @@ import FoodImage from '../../assets/food.jpg';
 import LifeImage from '../../assets/life.jpg';
 import styles from './styles.module.scss'
 import classNames from "classnames";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 const tabs = [
     {
         key: 'cartoon',
         title: '动画',
+        image: CartoonImage,
     },
     {
         key: 'food',
         title: '美食',
+        image: FoodImage,
     },
     {
         key: 'movie',
         title: '电影',
+        image: MovieImage,
     },
     {
         key: 'life',
         title: '生活',
+        image: LifeImage,
     }
 ]
 
+const TAB_HEIGHT = 56;
 //1. 点击 Tab 滚动跳转
 //2. 滚动时，高亮Tab
 //3. Tabs 吸顶
@@ -49,6 +53,17 @@ const SecondSection: FC = ()=>{
         if(secondSectionRef.current){
             const {top} = secondSectionRef.current.getBoundingClientRect();
             setIsFixed(top <= 0);
+
+            const sectionNodes = secondSectionRef.current.querySelectorAll('section');
+
+            Array.from(sectionNodes).forEach(sectionEl => {
+                const {top} = sectionEl.getBoundingClientRect();
+                const key = sectionEl.getAttribute('data-id') || '';
+
+                if (top <=  TAB_HEIGHT) {
+                    setActiveTab(key);
+                }
+            })
         }
     }
 
@@ -77,7 +92,7 @@ const SecondSection: FC = ()=>{
             {tabs.map(tab=>(
                 <section data-id={tab.key}>
                     <h2>{tab.title}</h2>
-                    <img src={CartoonImage} alt={tab.key} />
+                    <img src={tab.image} alt={tab.key} />
                 </section>
             ))}
 
