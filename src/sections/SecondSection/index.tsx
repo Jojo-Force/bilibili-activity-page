@@ -3,6 +3,7 @@ import CartoonImage from '../../assets/cartoon.jpg';
 import MovieImage from '../../assets/movie.png';
 import FoodImage from '../../assets/food.jpg';
 import LifeImage from '../../assets/life.jpg';
+import LogoImage from '../../assets/logo.png';
 import styles from './styles.module.scss'
 import classNames from "classnames";
 
@@ -95,6 +96,17 @@ const SecondSection: FC = ()=>{
                     <img src={tab.image} alt={tab.key} />
                 </section>
             ))}
+
+
+            {/* 吸底按钮 */}
+
+            <div className={classNames(styles.btnWrapper, {[styles.visible]: isFixed})}>
+                <img src={LogoImage} alt="LOGO"/>
+                
+                <a href="https://www.bilibili.com/" target="_blank">
+                    <button>App 内打开</button>
+                </a>
+            </div>
 
         </div>
     )
