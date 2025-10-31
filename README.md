@@ -6,8 +6,10 @@ bilibili-activity-page is a React project that mimics the activity page of Bilib
 
 ```bash
 npm i
+```
 
 ## Running
 
 ```bash
 npm run dev
+```
